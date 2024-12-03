@@ -1,0 +1,102 @@
+programa
+{
+	
+//restaurante 3x3, zerar a matriz; feito
+	//indicar quais mesas estao livres; feito
+	//pedidos, menu e indicar qual mesa estao; manter o valor do pedido a mesa; feito
+	//pagar a conta - indicar a mesa e adicionar 10% gorjeta, apos pagar marcar mesa como livre; feito
+	//relatorio com nº de mesas livres o número de mesas ocupadas, o valor do caixa (mesas que já pagaram), o valor das mesas em aberto e o total de receita. 
+
+	funcao inicio()
+	{
+	
+		
+		/////////////////
+		//zera a matriz
+		inteiro posicao = 0
+		inteiro NumMesa = 1
+		cadeia lugar[3][3]
+		para(inteiro i=0;i<3;i++)
+		{
+			para(inteiro j=0;j<3;j++)
+			{
+				lugar[i][j]="livre"
+			}
+			
+		}
+		///////////////////////////
+		//indicar o estado da mesa
+		para(inteiro i=0;i<3;i++)
+		{
+			para(inteiro j=0;j<3;j++)
+			{
+				se ( i==0 e j==0)
+				{	
+					escreva("Todas as mesas estão livres\n\n")
+				}
+				escreva("mesa ",NumMesa," ", lugar[i][j],"\t")
+				NumMesa++
+				se ( i==2 e j==2)
+				{
+					escreva("\n\nDigite o numero da mesa que deseja\n")
+				}
+			}
+			escreva("\n")
+		}
+		//////////////////
+		//pedidos, menu e indicar qual mesa estao; manter o valor do pedido a mesa
+		leia(posicao)
+		NumMesa = 1
+		para(inteiro i=0;i<3;i++)
+		{
+			para(inteiro j=0;j<3;j++)
+			{
+				se(NumMesa==posicao)
+				{
+					lugar[i][j]="ocupada"	
+				}
+			
+				escreva("mesa ",NumMesa," ", lugar[i][j],"\t")
+				NumMesa++
+			}
+			escreva("\n")
+		}
+		
+		
+		cadeia menu[3] = {"PratoFeito","Coca","Agua"}
+		inteiro preco[3] = {20,5,2}
+		
+		escreva("\nFaça seu pedido, digite 0 para encerrar\n\n")
+		para(inteiro i=0;i<3;i++)
+		{			
+			escreva(" ",i+1," para ",menu[i]," ",preco[i]," reais\t")
+		}
+		escreva("\n")
+		inteiro parar =1
+		inteiro pedido = 0
+		real Conta = 0.0
+		enquanto(parar != 0)
+		{
+			leia(pedido)
+			parar = pedido
+			escolha(pedido)
+			{
+				caso 1:
+					Conta+=20
+				pare
+					
+				caso 2:
+					Conta+=5
+				pare
+
+				caso 3:
+					Conta+=2
+				pare
+			}
+		}
+		escreva("O valor da conta com a gorjeta é: ",Conta*=1.1," reais\n Pagar agora?(s/n)")
+		//relatorio com nº de mesas livres o número de mesas ocupadas, o valor do caixa (mesas que já pagaram), o valor das mesas em aberto e o total de receita.
+		cadeia resposta = ""
+		se(resposta=="n")
+	}
+}
