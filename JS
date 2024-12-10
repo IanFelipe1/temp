@@ -1,0 +1,89 @@
+const contentData = {
+  motor: {
+    image: "../img/pecas/motor.png",
+    text: "O sistema do motor de um carro é fundamental para o funcionamento do veículo, pois é ele quem converte a energia armazenada no combustível em movimento. O motor de um carro é um dos componentes mais complexos e vitais do veículo, e ele está intimamente relacionado com outros sistemas, como o sistema de ignição, o sistema de arrefecimento.",
+  },
+  transmissao: {
+    image: "../img/pecas/sistemaTransmissao.png",
+    text: "A transmissão é um dos principais componentes do sistema de propulsão de um veículo, sendo responsável por transferir a potência gerada pelo motor para as rodas, permitindo que o carro se movimente. Ela também tem a função de ajustar a relação de rotação entre o motor e as rodas, de acordo com a velocidade e as condições de condução, o que permite o controle eficiente da velocidade e do torque do veículo.",
+  },
+  embreagem: {
+    image: "../img/pecas/sistemaEmbreagem.png",
+    text: "A embreagem é um componente essencial do sistema de transmissão de um veículo com câmbio manual, permitindo a desaceleração e a troca de marchas de forma suave. Ela conecta e desconecta o motor da transmissão, possibilitando que o motorista altere as marchas sem que o motor perca potência ou cause danos à transmissão.",
+  },
+  suspensao: {
+    image: "../img/pecas/sistemaSuspensao.png",
+    text: "O sistema de suspensão de um carro é responsável por garantir o conforto e a estabilidade do veículo, absorvendo os impactos provenientes do solo e mantendo as rodas em contato com a estrada de maneira constante. Ele também ajuda a controlar o movimento da carroceria durante curvas, aceleração e frenagem. Além disso, a suspensão melhora a dirigibilidade e contribui para a segurança ao evitar que o veículo se descontrole devido a forças externas, como buracos ou ondulações na estrada.",
+  },
+  freios: {
+    image: "../img/pecas/sistemaFreio.png",
+    text: "O sistema de freios é um dos componentes mais críticos de um carro, responsável pela segurança do veículo, permitindo que ele desacelere e pare de maneira eficaz quando o motorista aciona o pedal de freio. O sistema de freios deve ser confiável e eficiente para garantir que o veículo pare de forma controlada, mesmo em situações de emergência.",
+  },
+  direcao: {
+    image: "../img/pecas/sistemaDirecao.png",
+    text: "O sistema de direção de um carro é responsável por permitir que o motorista controle a trajetória do veículo de forma eficiente e segura. Ele transmite o movimento do volante para as rodas, permitindo que o carro seja direcionado na direção desejada.",
+  },
+  arrefecimento: {
+    image: "../img/pecas/sistemaArrefecimento.png",
+    text: "O sistema de arrefecimento (ou sistema de resfriamento) de um carro é fundamental para controlar a temperatura do motor, evitando que ele superaqueça e garantindo que funcione de maneira eficiente e segura. O motor de um veículo gera muito calor durante o funcionamento, e sem um sistema adequado de arrefecimento, esse calor poderia danificar o motor e outros componentes do veículo.",
+  },
+  eletrico: {
+    image: "../img/pecas/sistemaEletrico.png",
+    text: "O sistema elétrico de um carro tem como principal função fornecer energia elétrica para o funcionamento de diversos componentes do veículo, desde o motor até os acessórios internos e externos. Ele é responsável por garantir que os sistemas eletrônicos, os sistemas de ignição e os dispositivos auxiliares do carro operem corretamente.",
+  },
+};
+
+// Função para atualizar conteúdo principal (imagem e texto)
+function updateContent(service) {
+  const image = document.getElementById("content-image");
+  const text = document.getElementById("content-text");
+
+  if (contentData[service]) {
+    image.src = contentData[service].image;
+    text.textContent = contentData[service].text;
+    // Chama a função para exibir os botões subsidiários
+    toggleAdditionalButtons(service);
+  }
+}
+
+// Função para alternar a visibilidade dos botões subsidiários
+function toggleAdditionalButtons(service) {
+  const buttonsContainer = document.getElementById('sidebar-right');
+  buttonsContainer.style.display = 'none';  // Esconde a coluna direita inicialmente
+
+  const buttonsForService = document.getElementById('botao-' + service);
+  if (buttonsForService) {
+    buttonsForService.style.display = 'block';  // Exibe os botões relacionados ao serviço
+    buttonsContainer.style.display = 'block';  // Exibe a sidebar direita
+  }
+}
+
+// Função para atualizar o conteúdo com base no botão subsidiário
+function updateContentFromSubsidiary(service, pecaInfo) {
+  const image = document.getElementById("content-image");
+  const text = document.getElementById("content-text");
+
+  // Atualiza o conteúdo com as informações do botão subsidiário
+  if (contentData[service]) {
+    image.src = contentData[service].image;
+    text.textContent = pecaInfo;
+  }
+}
+
+// Função para resetar a página para a versão inicial (botão "Voltar")
+function resetPage() {
+  const image = document.getElementById("content-image");
+  const text = document.getElementById("content-text");
+
+  // Reseta o conteúdo para a versão padrão
+  image.src = "../img/guideUser.png";  // Imagem inicial
+  text.textContent = "Este é um guia interativo, com as algumas peças e sua função, separados por sistemas presentes na mecânica do automóvel.";
+
+  // Esconde os botões subsidiários
+  const buttonsContainer = document.getElementById('sidebar-right');
+  buttonsContainer.style.display = 'none';
+
+  // Esconde todos os botões subsidiários
+  const allSubsidiaryButtons = document.querySelectorAll('.botoes-adicionais');
+  allSubsidiaryButtons.forEach(buttons => buttons.style.display = 'none');
+}
